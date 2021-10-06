@@ -1,4 +1,4 @@
-# Catálogo de pokemones
+# Wikipokémon
 Aplicación programada en Reactjs que muestra 10 pokemones mediante una lista de tarjetas al consumir la API de https://pokeapi.co/
 
 # Pre-requisitos 📋
