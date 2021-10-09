@@ -10,7 +10,7 @@ Aplicación programada en Reactjs que muestra 10 pokemones mediante una lista de
 Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas.
 Ejecuta:
 ```bash
-git remote add origin https://github.com/ricardopajarito/catalogo-pokemones.git
+git remote add origin https://github.com/ricardopajarito/wikipokemon.git
 ```
 Una vez dentro de la carpeta raíz ejecuta:
 ```bash
