@@ -1,31 +1,30 @@
-import React, {useState, useEffect, Fragment}  from "react";
+import React, {useState, useEffect}  from "react";
 import Tarjeta from "./Tarjeta"
 
 const Lista = () => {
-    const [data, setData] = useState([])
     const [pokemons, setPokemons] = useState([])
-    const [load, setLoad] = useState([])
-
-    const arr = [];
+    const [load, setLoad] = useState(true)
 
     useEffect(()=>{
-        fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=1')
-        .then((response) => response.json())
-        .then((d) => setData(d.results.map((item) => {
-            fetch(item.url)
-            .then((response) => response.json())
-            .then((p) => arr.push(p));
-            setPokemons(arr);
-        })
-        ));
+        ( async () => {
+            let result = await fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=1');
+            let json = await result.json();
+            // console.log(json);
+            json.results.map(async (pokemon) => {
+                let result = await fetch(pokemon.url);
+                let json = await result.json()
+                setPokemons( pokemons => {
+                    return [...pokemons, json]
+                });
+            });
+
+            setLoad(false);
+        }
+        )();
     }, []);
 
-    setTimeout(() => {
-        setLoad(false);
-    }, 1000);
-
     return(
-        <Fragment>
+        <>
             
             { load ? ( <p>Loading...</p>) : (
                 <div>
@@ -42,7 +41,7 @@ const Lista = () => {
                 </div>
             )}
             
-        </Fragment>
+        </>
     );
 }
 
